@@ -1,0 +1,181 @@
+/* App.css */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.App {
+  background: linear-gradient(135deg, #1a2a6c, #283c5f);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  font-size: calc(10px + 2vmin);
+  color: #f0f0f0;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: #4fc3f7;
+  border-radius: 2px;
+}
+
+.TasksView ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.TasksView li {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.TasksView li:hover {
+  transform: translateY(-5px);
+}
+
+.task-card {
+  background-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  padding: 20px 15px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  position: relative;
+}
+
+/* 优先级标识 - 顶部标记带 */
+.card-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5px;
+  width: 100%;
+}
+
+/* 优先级颜色 */
+.card-urgent::before { background: #ff5252; }
+.card-high::before { background: #ff9800; }
+.card-medium::before { background: #2196f3; }
+.card-low::before { background: #4caf50; }
+
+/* 分类颜色 */
+.card-学习 { background-color: rgba(41, 182, 246, 0.25); }
+.card-工作 { background-color: rgba(106, 76, 214, 0.25); }
+.card-个人 { background-color: rgba(233, 30, 99, 0.25); }
+.card-生活 { background-color: rgba(76, 175, 80, 0.25); }
+.card-健康 { background-color: rgba(255, 152, 0, 0.25); }
+
+.card-content {
+  padding: 15px;
+  font-size: 0.9rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+}
+
+.card-body {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.card-content::before {
+  content: '•';
+  margin-right: 8px;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .TasksView ul {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+  }
+  
+  .card-header {
+    padding: 15px 10px;
+    font-size: 1.1rem;
+  }
+  
+  .App {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .TasksView ul {
+    grid-template-columns: 1fr;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.TasksView li {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* 为不同li设置不同的动画延迟 */
+.TasksView li:nth-child(1) { animation-delay: 0.1s; }
+.TasksView li:nth-child(2) { animation-delay: 0.2s; }
+.TasksView li:nth-child(3) { animation-delay: 0.3s; }
+.TasksView li:nth-child(4) { animation-delay: 0.4s; }
+.TasksView li:nth-child(5) { animation-delay: 0.5s; }
+.TasksView li:nth-child(6) { animation-delay: 0.6s; }
+.TasksView li:nth-child(7) { animation-delay: 0.7s; }
+.TasksView li:nth-child(8) { animation-delay: 0.8s; }
+
+
+.is-true{
+  color: #4caf50;
+}
+.is-false{
+  color: #ff5252;
+}
