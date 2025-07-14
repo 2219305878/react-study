@@ -18,7 +18,7 @@ function TaskItem({ id, text, done, priority, category, onDelete, onFinish, onEd
     setEditData(transData);
   }
   return (
-    <div className='task-card'>
+    <div className='task-card' key={`task-${id}-${isEditTask}-${done}`}>
       <div className={'card-header card-title card-' + category + ' card-' + priority}>
         <span className={done ? 'is-true' : 'is-false'}>{done ? "✔" : "✖"}</span>
         {isEditTask ? <input type="text" name='text' value={editData.text} onChange={e => onInput(e)} /> : text}
@@ -33,7 +33,7 @@ function TaskItem({ id, text, done, priority, category, onDelete, onFinish, onEd
         操作:
         {!done && !isEditTask ? <button onClick={startEdit}>编辑</button> : ""}
         {!done && isEditTask ? <button onClick={endEdit}>保存</button> : ""}
-        <button onClick={() => onDelete(id)}>删除</button>
+        {!done && !isEditTask ? <button onClick={() => onDelete(id)}>删除</button> : ""}
         {!done ? <button onClick={() => onFinish(id)}>完成</button> : ""}
       </div>
     </div>
@@ -146,7 +146,7 @@ function App() {
       "priority": "",
       "category": ""
     }
-    setTasksList([...tasksList,newTask]);
+    setTasksList([...tasksList, newTask]);
   }
   function onEdit(changeItem) {
     const transData = [...tasksList]
